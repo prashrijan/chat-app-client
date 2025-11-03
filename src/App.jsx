@@ -1,21 +1,50 @@
 import Navbar from "./components/Navbar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
+import { useAuthStore } from "./store/useAuthStore";
+import { useEffect } from "react";
+import Spinner from "./components/Spinner";
 
 function App() {
+    const { authUser, checkAuth, isAuthChecking } = useAuthStore();
+
+    useEffect(() => {
+        checkAuth();
+    }, [checkAuth]);
+
+    if (isAuthChecking && !authUser) {
+        return <Spinner />;
+    }
+
     return (
         <div>
             <Navbar />
 
             <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/signup" element={<SignUpPage />} />
-                <Route path="/signin" element={<SignInPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
+                <Route
+                    path="/"
+                    element={
+                        authUser ? <HomePage /> : <Navigate to="/signin" />
+                    }
+                />
+                <Route
+                    path="/signup"
+                    element={authUser ? <Navigate to="/" /> : <SignUpPage />}
+                />
+                <Route
+                    path="/signin"
+                    element={authUser ? <Navigate to="/" /> : <SignInPage />}
+                />
+                <Route
+                    path="/profile"
+                    element={
+                        authUser ? <ProfilePage /> : <Navigate to="/signin" />
+                    }
+                />
                 <Route path="/settings" element={<SettingsPage />} />
             </Routes>
         </div>
