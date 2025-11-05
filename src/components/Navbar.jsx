@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MessageSquare, Settings, User, LogOut } from "lucide-react";
 
 const Navbar = () => {
     const { signout, authUser } = useAuthStore();
+    const navigate = useNavigate();
 
+    useEffect(() => {
+        if (!authUser) navigate("/signin");
+    }, [authUser, navigate]);
     return (
         <header
             className="bg-base-100 border-b border-base-300 fixed w-full top-0 z-40 

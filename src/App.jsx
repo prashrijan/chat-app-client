@@ -15,7 +15,7 @@ function App() {
 
     useEffect(() => {
         checkAuth();
-    }, [checkAuth]);
+    }, [authUser, checkAuth]);
 
     if (isAuthChecking && !authUser) {
         return <Spinner />;
