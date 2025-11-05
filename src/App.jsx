@@ -9,9 +9,11 @@ import { useAuthStore } from "./store/useAuthStore";
 import { useEffect } from "react";
 import Spinner from "./components/Spinner";
 import { Toaster } from "react-hot-toast";
+import { useThemeStore } from "./store/useThemeStore";
 
 function App() {
     const { authUser, checkAuth, isAuthChecking } = useAuthStore();
+    const { theme } = useThemeStore();
 
     useEffect(() => {
         checkAuth();
@@ -23,7 +25,7 @@ function App() {
     console.log(authUser);
 
     return (
-        <div>
+        <div data-theme={theme}>
             <Navbar />
 
             <Routes>
