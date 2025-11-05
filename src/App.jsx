@@ -15,11 +15,12 @@ function App() {
 
     useEffect(() => {
         checkAuth();
-    }, [authUser, checkAuth]);
+    }, [checkAuth]);
 
     if (isAuthChecking && !authUser) {
         return <Spinner />;
     }
+    console.log(authUser);
 
     return (
         <div>
