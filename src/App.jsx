@@ -8,6 +8,7 @@ import SettingsPage from "./pages/SettingsPage";
 import { useAuthStore } from "./store/useAuthStore";
 import { useEffect } from "react";
 import Spinner from "./components/Spinner";
+import { Toaster } from "react-hot-toast";
 
 function App() {
     const { authUser, checkAuth, isAuthChecking } = useAuthStore();
@@ -47,6 +48,8 @@ function App() {
                 />
                 <Route path="/settings" element={<SettingsPage />} />
             </Routes>
+
+            <Toaster position="top-center" />
         </div>
     );
 }
