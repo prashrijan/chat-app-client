@@ -5,11 +5,7 @@ import { MessageSquare, Settings, User, LogOut } from "lucide-react";
 
 const Navbar = () => {
     const { signout, authUser } = useAuthStore();
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!authUser) navigate("/signin");
-    }, [authUser, navigate]);
     return (
         <header
             className="bg-base-100 border-b border-base-300 fixed w-full top-0 z-40 
