@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
-import { Link, useNavigate } from "react-router-dom";
-import { MessageSquare, Settings, User, LogOut } from "lucide-react";
+import { LogOut, MessageSquare, Settings, User } from "lucide-react";
 
 const Navbar = () => {
     const { signout, authUser } = useAuthStore();
@@ -66,5 +65,4 @@ const Navbar = () => {
         </header>
     );
 };
-
 export default Navbar;
